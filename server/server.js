@@ -2,6 +2,7 @@ require ("dotenv").config();
 const express=require("express");
 const mongoose=require("mongoose");
 const bodyparser=require("body-parser");
+const cors=require("cors");
 const app=express();
 //import routes
 const studentRoute=require('./routes/student');
@@ -9,6 +10,8 @@ const studentRoute=require('./routes/student');
 
 //middleware
 app.use(bodyparser.json());
+app.use(cors());
+
 //route variable communicate with the server 
 app.use(studentRoute);
 

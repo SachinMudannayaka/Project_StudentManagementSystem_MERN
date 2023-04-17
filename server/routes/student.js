@@ -23,7 +23,7 @@ router.get('/getAllstudent',(req,res)=>{
         if(err){
             return res.status(400).json({error:err})
         }
-        return res.status(200).json({success:true, existingPosts:students});
+        return res.status(200).json({success:true, existingStudents:students});
     });
 });
 
