@@ -1,35 +1,32 @@
 import React, { Component } from 'react'
-import axios from 'axios';
+import{BrowserRouter, Route, Routes} from "react-router-dom";
+//import axios from 'axios';
+import AllStudent from './components/AllStudent';
+import AddStudent from './components/AddStudent';
+import EditStudent from './components/EditStudent';
+import StudentDetails from './components/StudentDetails';
+//import NavBar from './components/NavBar';
 export default class App extends Component {
+ 
 
-constructor(props){
-super(props);
-this.state={student:[]}
-}
-
-componentDidMount(){
-  this.retriveStudents();
-}
-
-retriveStudents(){
-  axios.get("http://localhost:8000/getAllstudent").then(res=>{
-    if(res.data.success){
-      this.setState({student:res.data.existingStudents});
-      console.log(this.state.student);
-    }
-  })
-}
   render() {
     return (
-      <div>
-        {this.state.student.map(student=>(
-        <div>
-          <p>{student.student_id}</p>
-          <p>{student.name}</p>
-          <p>{student.address}</p>
-          <p>{student.contact}</p>
-        </div>))}
-      </div>
+     <BrowserRouter>
+      <div className='container'>
+     
+     
+     
+        <Routes>
+        <Route path="/" element={<AllStudent/>} exact/>
+       <Route path="/addStudent" element={<AddStudent/>}/>
+       <Route path="/update/:id"element={<EditStudent/>}/>
+        <Route path="/getaStudent/:id" element={<StudentDetails/>}/>
+       
+      </Routes>
+     
+    
+    </div>
+    </BrowserRouter>
     )
   }
 }
