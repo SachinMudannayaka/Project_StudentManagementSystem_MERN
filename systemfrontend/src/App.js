@@ -5,13 +5,14 @@ import AllStudent from './components/AllStudent';
 import AddStudent from './components/AddStudent';
 import EditStudent from './components/EditStudent';
 import StudentDetails from './components/StudentDetails';
-//import NavBar from './components/NavBar';
+import NavBar from './components/NavBar';
 export default class App extends Component {
  
 
   render() {
     return (
      <BrowserRouter>
+     <NavBar/>
       <div className='container'>
      
      

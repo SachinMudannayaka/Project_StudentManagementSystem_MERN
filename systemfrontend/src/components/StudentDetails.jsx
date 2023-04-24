@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component,setState } from 'react'
 import axios from 'axios';
 export default class StudentDetails extends Component {
   constructor(props){
@@ -24,25 +24,30 @@ export default class StudentDetails extends Component {
   render() {
     const{student_id,name,address,contact}=this.state.student;
     return (
+     
       <div style={{marginTop:'20px'}}>
+        
       <h4>{name}</h4>
       <hr/>
 
       <dl className='row'>
         <dt className='col-sm-3'>STUDENT_ID</dt>
-        <dt className='col-sm-9'>{student_id}</dt>
+        <dd className='col-sm-9'>{student_id}</dd>
 
         <dt className='col-sm-3'>STUDENT_Name</dt>
-        <dt className='col-sm-9'>{name}</dt>
+        <dd className='col-sm-9'>{name}</dd>
 
         <dt className='col-sm-3'>ADDRESS</dt>
-        <dt className='col-sm-9'>{address}</dt>
+        <dd className='col-sm-9'>{address}</dd>
 
         <dt className='col-sm-3'>CONTACT NO</dt>
-        <dt className='col-sm-9'>{contact}</dt>
+        <dd className='col-sm-9'>{contact}</dd>
 
       </dl>
+      
+
       </div>
-    )
+   
+ )
   }
 }

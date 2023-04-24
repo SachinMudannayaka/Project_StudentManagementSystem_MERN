@@ -1,17 +1,23 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import axios from 'axios';
 export default class AddStudent extends Component {
 
 constructor(props){
   super(props);
-  this.state={student_id:"",name:"",address:"",contact:""}
+  this.state={student_id:"",name:"",address:"",contact:""};
 }
+
+
+  
 
 handlingInputChange=(e)=>{
 const{name,value}=e.target;
 this.setState({
   ...this.state,[name]:value
-})
+  
+}
+)
+//console.log(this.setState);
 }
 
 onSubmit=(e)=>{
@@ -20,40 +26,88 @@ onSubmit=(e)=>{
   const data={student_id:student_id,name:name,address:address,contact:contact}
 console.log(data);
 
+
 axios.post("/addStudent",data).then((res)=>{
 if(res.data.success){
   this.setState({
     student_id:"",
     name:"",
     address:"",
-    contact:""
+    contact:"",
+    
   })
+  alert("A Student Added");
+ 
 }
 })
 }
 
+
+
   render() {
     return (
-      <div>
-        <form>
-          <h1>ADD A NEW STUDENT</h1>
-  <hr/>
-    
-      <input type="text" name="student_id" className="form-control" placeholder="USER_ID" value={this.state.student_id} onChange={this.handlingInputChange}/>
-    
-   
-      <input type="text" name="name" className="form-control" placeholder="NAME" value={this.state.name} onChange={this.handlingInputChange}/>
-   
-    
-      <input type="text" name="address" className="form-control" placeholder="ADDRESS" value={this.state.address} onChange={this.handlingInputChange}/>
-    
-    
-      <input type="text" name="contact" className="form-control" placeholder="CONTACT_NO" value={this.state.contact} onChange={this.handlingInputChange}/>
-    
+      <div className='container'>
+          <div className="form-body">
+         
+        <div className="row">
+            <div className="form-holder">
+                <div className="form-content">
+                    <div className="form-items">
+                        <h3>Register Today</h3>
+                        <p>Fill in the data below.</p>
+                        <form className="requires-validation" noValidate>
 
-  <button type="submit" className="btn btn-primary bg-black" onClick={this.onSubmit}>ADD</button>
-</form>
-      </div>
+                            <div className="col-md-12">
+                               <input className="form-control" type="text" name="student_id" value={this.state.student_id}onChange={this.handlingInputChange} placeholder="USER_ID" required/>
+                               <div className="valid-feedback">Username field is valid!</div>
+                               <div className="invalid-feedback">Username field cannot be blank!</div>
+                            </div>
+
+                            <div className="col-md-12">
+                                <input className="form-control" type="text" name="name" value={this.state.name}onChange={this.handlingInputChange} placeholder="Student Name" required/>
+                                 <div className="valid-feedback">Name is valid!</div>
+                                 <div className="invalid-feedback">Name field cannot be blank!</div>
+                            </div>
+
+                           
+
+
+                            <div className="col-md-12">
+                              <input className="form-control" type="text" name="address"  value={this.state.address} onChange={this.handlingInputChange} placeholder="Addrress" required/>
+                               <div className="valid-feedback">Address field is valid!</div>
+                               <div className="invalid-feedback">Address field cannot be blank!</div>
+                           </div>
+
+                           <div className="col-md-12">
+                              <input className="form-control" type="text" name="contact"  value={this.state.contact} onChange={this.handlingInputChange} placeholder="Contact no" required/>
+                               <div className="valid-feedback">Address field is valid!</div>
+                               <div className="invalid-feedback">Address field cannot be blank!</div>
+                           </div>
+
+
+                          
+                        <div className="form-check">
+                          <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required/>
+                          <label className="form-check-label">I confirm that all data are correct</label>
+                         <div className="invalid-feedback">Please confirm that the entered data are all correct!</div>
+                        </div>
+                  
+
+                            <div className="form-button mt-3">
+                                <button id="submit" type="submit" className="btn btn-primary" onClick={this.onSubmit}>Register</button>
+                            </div>
+
+                            <pre style={{color:'white'}}>{JSON.stringify(this.state,undefined,2)}</pre>
+                        </form>
+                          
+                    </div>
+                </div>
+            </div>
+             
+        </div>
+    </div>
+   
+    </div>
     )
-  }
+    }
 }

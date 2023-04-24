@@ -31,9 +31,8 @@ export default class Body extends Component {
 
         filterData(student,searchKey){
           const result=student.filter((students)=>
-          students.name.toLowerCase().includes(searchKey)//||
-          //students.user_id.includes(searchKey)//||
-         //students.address.toLowerCase().includes(searchKey)
+          students.name.toLowerCase().includes(searchKey)||students.student_id.includes(searchKey)||
+         students.address.toLowerCase().includes(searchKey)
          )
           this.setState({student:result})
         }
@@ -50,9 +49,14 @@ handleSearchArea=(e)=>{
 
   render() {
     return (
-      <div className='container'>
-       <div><input className='form-control' type='search' placeholder='Search' name='searchQuery' onChange={this.handleSearchArea}></input></div>
-       <table className='table' >
+      
+      <div className='allStudentDisplayList'>
+        <div><input className='form-control' type='search' placeholder='Search' name='searchQuery' onChange={this.handleSearchArea}></input></div>
+        <div className='addStudentbtn'>
+        <button className='btn btn-success'><a href="/addStudent"style={{textDecoration:'none' ,color:'white'}}>ADD A STUDENT</a></button>
+        </div>
+       
+       <table className='table' style={{color:'white'}} >
         <thead>
             <tr>
                 <th scope='col'>#</th>
@@ -79,7 +83,7 @@ handleSearchArea=(e)=>{
     ))}
 </tbody>
       </table>
-      <button className='btn btn-success'><a href="/addStudent"style={{textDecoration:'none' ,color:'white'}}>ADD A STUDENT</a></button>
+      
       </div>
     )
   }

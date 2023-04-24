@@ -29,8 +29,8 @@ router.get('/getAllstudent',(req,res)=>{
 
 //get a users from database
 router.get('/getaStudent/:id',(req,res)=>{
-    let studentId=req.params.id;
-    Student.findById(studentId, (err,student)=>{
+    let studentid=req.params.id;
+    Student.findById(studentid, (err,student)=>{
         if(err){
             return res.status(400).json({success:false,err})
         }
